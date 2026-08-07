@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>新農教會｜維修站</title>
+<meta name="robots" content="noindex,nofollow">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{
+  --kraft:#c79b68;--paper:#ead2ae;--paper2:#f4dfbd;--paper3:#fff5e4;
+  --red:#8f2d28;--red2:#6d211e;--ink:#211713;--muted:#6e5542;
+  --line:#a67c59;--good:#315b3b;--bad:#822929;--shadow:0 12px 28px rgba(54,34,22,.16);
+}
+*{box-sizing:border-box}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+body{
+  margin:0;color:var(--ink);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif;
+  background:
+    radial-gradient(circle at 14% 8%,rgba(255,255,255,.10),transparent 24%),
+    repeating-linear-gradient(0deg,rgba(72,45,27,.025) 0 1px,transparent 1px 4px),
+    var(--kraft);
+  line-height:1.6;
+}
+button,input,textarea,select{font:inherit}
+button{min-height:44px}
+header{
+  position:sticky;top:0;z-index:30;background:rgba(244,223,189,.96);
+  border-bottom:1px solid rgba(72,45,29,.30);backdrop-filter:blur(8px)
+}
+.nav{width:min(1180px,calc(100% - 28px));min-height:68px;margin:auto;display:flex;align-items:center;gap:12px}
+.brand{font-weight:900;color:var(--red2);font-size:21px;margin-right:auto}
+.back{text-decoration:none;color:var(--red2);font-weight:900;border:1px solid var(--red2);padding:8px 11px;background:#f7e8ce}
+.wrap{width:min(1180px,calc(100% - 28px));margin:24px auto 56px}
+.login,.panel{
+  background:rgba(244,225,193,.96);border:1px solid rgba(76,49,31,.34);
+  box-shadow:var(--shadow);padding:20px;
+}
+.login{max-width:520px;margin:54px auto}
+h1,h2,h3{margin:0 0 12px;color:var(--red2);line-height:1.35}
+h1{font-size:28px} h2{font-size:23px}
+.hint{color:var(--muted);font-size:13px;margin:5px 0 12px}
+label{display:block;font-weight:800;margin:9px 0 5px}
+input,textarea,select{
+  width:100%;min-height:44px;padding:10px 11px;border:1px solid #9e7756;
+  background:#fff7e9;color:#211713;border-radius:0
+}
+textarea{min-height:110px;resize:vertical}
+button{
+  border:1px solid #2a1e18;background:#2c211b;color:#f8e6c7;padding:9px 14px;
+  font-weight:900;cursor:pointer;border-radius:0
+}
+button.primary{background:var(--red2);border-color:var(--red2)}
+button.light{background:#efd7b2;color:#3a261c;border-color:#8f6748}
+button.danger{background:#7b2929;border-color:#7b2929}
+button:disabled{opacity:.5;cursor:not-allowed}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.status{margin-top:10px;padding:9px 11px;font-size:13px;display:none}
+.status.show{display:block}.status.good{background:#dce9dc;color:#27422c}.status.bad{background:#efd4cf;color:#6c1e1e}
+.toolbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:16px}
+.toolbar .spacer{margin-left:auto}
+.badge{display:inline-block;background:#2a211b;color:#f4d8ab;padding:4px 8px;font-size:11px;font-weight:900}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0;position:sticky;top:70px;z-index:15;padding:8px 0;background:linear-gradient(var(--kraft),var(--kraft))}
+.tab{background:#e6c598;color:#3a261c;border:1px solid #8d6749}
+.tab.active{background:var(--red2);color:#fff}
+.view{display:none}.view.active{display:block}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.full{grid-column:1/-1}
+.list{display:grid;gap:12px;margin-top:16px}
+.item{background:#f3dfbd;border-left:6px solid var(--red);padding:13px}
+.item-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.item .mini{font-size:12px;color:var(--muted);margin-bottom:6px}
+.item-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.divider{height:1px;background:#ad8868;margin:18px 0}
+.checkline{display:flex;align-items:center;gap:8px;margin-top:10px}
+.checkline input{width:auto;min-height:auto}
+.photo-row{display:grid;grid-template-columns:1fr 90px auto;gap:8px;align-items:center;margin-top:8px}
+.small{font-size:12px}
+
+/* 手機版：真的可以用，不只是縮小 */
+@media(max-width:760px){
+  body{font-size:16px}
+  .nav{width:min(100% - 18px,1180px);min-height:62px}
+  .brand{font-size:18px}
+  .back{padding:7px 9px;font-size:13px}
+  .wrap{width:min(100% - 18px,1180px);margin:16px auto 40px}
+  .login,.panel{padding:15px;box-shadow:0 8px 18px rgba(54,34,22,.13)}
+  .login{margin:24px auto}
+  h1{font-size:24px} h2{font-size:21px}
+  .grid,.item-row,.photo-row{grid-template-columns:1fr}
+  .full{grid-column:auto}
+  .toolbar{align-items:stretch}
+  .toolbar .spacer{display:none}
+  .toolbar button{flex:1}
+  .tabs{
+    top:62px;
+    overflow-x:auto;flex-wrap:nowrap;
+    margin-left:-15px;margin-right:-15px;padding:8px 15px;
+    -webkit-overflow-scrolling:touch;
+  }
+  .tab{flex:0 0 auto;white-space:nowrap}
+  .actions button{flex:1 1 140px}
+  .item-actions button{flex:1 1 120px}
+  input,textarea,select{font-size:16px} /* 避免 iPhone 自動放大 */
+}
+@media(max-width:420px){
+  .brand{font-size:16px}
+  .badge{font-size:10px}
+  .toolbar button{font-size:13px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <div class="brand">✝ 新農教會｜維修站</div>
+    <a class="back" href="index.html">← 回網站</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="login" id="loginBox">
+    <h1>維修站登入</h1>
+    <p class="hint">使用 Supabase 管理者帳號登入；手機、平板、電腦都可以操作。</p>
+    <label>Email</label>
+    <input id="loginEmail" type="email" autocomplete="username" placeholder="name@example.com">
+    <label>密碼</label>
+    <input id="loginPassword" type="password" autocomplete="current-password" placeholder="••••••••">
+    <div class="actions"><button class="primary" id="loginBtn">登入維修站</button></div>
+    <div class="status" id="loginStatus"></div>
+  </section>
+
+  <main id="adminApp" hidden>
+    <div class="toolbar">
+      <span class="badge">SUPABASE CONNECTED</span>
+      <strong id="who"></strong>
+      <span class="spacer"></span>
+      <button class="light" id="refreshBtn">重新載入</button>
+      <button class="danger" id="logoutBtn">登出</button>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="settings">教會資訊</button>
+      <button class="tab" data-tab="meetings">聚會時間</button>
+      <button class="tab" data-tab="events">年度活動</button>
+      <button class="tab" data-tab="albums">恩典足跡／相簿</button>
+    </div>
+
+    <div class="status" id="globalStatus"></div>
+
+    <section class="view active panel" id="view-settings">
+      <h2>教會資訊</h2>
+      <div class="grid">
+        <div><label>地址</label><input id="s_address"></div>
+        <div><label>電話</label><input id="s_phone"></div>
+        <div><label>Email</label><input id="s_email" type="email"></div>
+        <div><label>牧師</label><input id="s_pastor"></div>
+        <div><label>New Eyes 連結</label><input id="s_neweyes_url"></div>
+        <div><label>布農族語聖經連結</label><input id="s_bible_url"></div>
+        <div class="full"><label>YouTube 連結</label><input id="s_youtube_url"></div>
+        <div class="full"><label>關於教會／歷史文字</label><textarea id="s_about_text"></textarea></div>
+      </div>
+      <div class="actions"><button class="primary" id="saveSettings">儲存教會資訊</button></div>
+    </section>
+
+    <section class="view panel" id="view-meetings">
+      <h2>聚會時間</h2>
+      <div class="grid">
+        <div><label>分類</label><select id="m_category"><option>每週主日聚會</option><option>主日團契</option><option>每週週間聚會</option><option>小組聚會</option></select></div>
+        <div><label>名稱</label><input id="m_name" placeholder="例如：主日禮拜"></div>
+        <div><label>時間文字</label><input id="m_schedule" placeholder="每週日 上午 09:30"></div>
+        <div><label>排序</label><input id="m_sort" type="number" value="0"></div>
+      </div>
+      <div class="checkline"><input id="m_published" type="checkbox" checked><label for="m_published" style="margin:0">公開顯示</label></div>
+      <div class="actions"><button class="primary" id="addMeeting">新增聚會</button></div>
+      <div class="divider"></div><div class="list" id="meetingList"></div>
+    </section>
+
+    <section class="view panel" id="view-events">
+      <h2>年度活動</h2>
+      <div class="grid">
+        <div><label>日期文字</label><input id="e_date" placeholder="例如：05.18"></div>
+        <div><label>活動名稱</label><input id="e_title" placeholder="例如：母親節主日"></div>
+        <div><label>排序</label><input id="e_sort" type="number" value="0"></div>
+      </div>
+      <div class="checkline"><input id="e_published" type="checkbox" checked><label for="e_published" style="margin:0">公開顯示</label></div>
+      <div class="actions"><button class="primary" id="addEvent">新增活動</button></div>
+      <div class="divider"></div><div class="list" id="eventList"></div>
+    </section>
+
+    <section class="view panel" id="view-albums">
+      <h2>恩典足跡／相簿</h2>
+      <p class="hint">照片使用公開圖片網址。新增相簿後可再新增多張照片。</p>
+      <div class="grid">
+        <div><label>活動日期</label><input id="a_date" placeholder="2026.05.18"></div>
+        <div><label>相簿標題</label><input id="a_title"></div>
+        <div class="full"><label>說明</label><textarea id="a_desc"></textarea></div>
+        <div class="full"><label>封面圖片 URL</label><input id="a_cover"></div>
+        <div><label>排序</label><input id="a_sort" type="number" value="0"></div>
+      </div>
+      <div class="checkline"><input id="a_published" type="checkbox" checked><label for="a_published" style="margin:0">公開顯示</label></div>
+      <div class="actions"><button class="primary" id="addAlbum">新增相簿</button></div>
+      <div class="divider"></div><div class="list" id="albumList"></div>
+    </section>
+  </main>
+</div>
+
+<script>
+const SUPABASE_URL='https://ljyfnzfallrzubyyrylg.supabase.co';
+const SUPABASE_KEY='sb_publishable_iVEzAp0g7kB3h8omFfi3FA_TvNYZyrr';
+const db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+function status(id,msg,good=true){const e=$(id);e.textContent=msg;e.className='status show '+(good?'good':'bad')}
+function global(msg,good=true){status('globalStatus',msg,good)}
+function val(id){return $(id).value.trim()}
+function num(id){return Number($(id).value||0)}
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); $('view-'+b.dataset.tab).classList.add('active');
+});
+
+async function showApp(session){
+  $('loginBox').hidden=true;$('adminApp').hidden=false;
+  $('who').textContent=session?.user?.email||'管理者';
+  await loadAll();
+}
+async function checkSession(){
+  const {data:{session}}=await db.auth.getSession();
+  if(session) showApp(session);
+}
+$('loginBtn').onclick=async()=>{
+  $('loginBtn').disabled=true;
+  const {data,error}=await db.auth.signInWithPassword({email:val('loginEmail'),password:val('loginPassword')});
+  $('loginBtn').disabled=false;
+  if(error) return status('loginStatus','登入失敗：'+error.message,false);
+  status('loginStatus','登入成功');
+  showApp(data.session);
+};
+$('logoutBtn').onclick=async()=>{await db.auth.signOut();location.reload()};
+$('refreshBtn').onclick=loadAll;
+
+async function loadAll(){
+  global('正在載入…');
+  try{await Promise.all([loadSettings(),loadMeetings(),loadEvents(),loadAlbums()]);global('資料已更新')}catch(e){global('載入失敗：'+e.message,false)}
+}
+
+async function loadSettings(){
+  const {data,error}=await db.from('site_settings').select('*').order('updated_at',{ascending:false}).limit(1).maybeSingle();
+  if(error) throw error;
+  const d=data||{};
+  ['address','phone','email','pastor','neweyes_url','bible_url','youtube_url','about_text'].forEach(k=>$('s_'+k).value=d[k]||'');
+  $('saveSettings').dataset.id=d.id||'';
+}
+$('saveSettings').onclick=async()=>{
+  const payload={
+    address:val('s_address'),phone:val('s_phone'),email:val('s_email'),pastor:val('s_pastor'),
+    neweyes_url:val('s_neweyes_url'),bible_url:val('s_bible_url'),youtube_url:val('s_youtube_url'),
+    about_text:val('s_about_text'),updated_at:new Date().toISOString()
+  };
+  const id=$('saveSettings').dataset.id;
+  const q=id?db.from('site_settings').update(payload).eq('id',id):db.from('site_settings').insert(payload);
+  const {error}=await q;if(error)return global('儲存失敗：'+error.message,false);
+  global('教會資訊已儲存');loadSettings();
+};
+
+async function loadMeetings(){
+  const {data,error}=await db.from('meetings').select('*').order('sort_order',{ascending:true});
+  if(error) throw error;
+  $('meetingList').innerHTML=(data||[]).map(r=>`
+    <div class="item">
+      <div class="mini">${esc(r.category)}｜排序 ${r.sort_order??0}｜${r.published?'公開':'隱藏'}</div>
+      <div class="item-row">
+        <input id="mn_${r.id}" value="${esc(r.name)}">
+        <input id="ms_${r.id}" value="${esc(r.schedule_text)}">
+      </div>
+      <div class="item-actions">
+        <button class="light" onclick="saveMeeting('${r.id}')">儲存修改</button>
+        <button class="danger" onclick="deleteRow('meetings','${r.id}',loadMeetings)">刪除</button>
+      </div>
+    </div>`).join('')||'<p class="hint">目前沒有資料。</p>';
+}
+$('addMeeting').onclick=async()=>{
+  const payload={category:val('m_category'),name:val('m_name'),schedule_text:val('m_schedule'),sort_order:num('m_sort'),published:$('m_published').checked};
+  const {error}=await db.from('meetings').insert(payload);if(error)return global('新增失敗：'+error.message,false);
+  $('m_name').value='';$('m_schedule').value='';global('聚會已新增');loadMeetings();
+};
+window.saveMeeting=async id=>{
+  const {error}=await db.from('meetings').update({name:$('mn_'+id).value.trim(),schedule_text:$('ms_'+id).value.trim()}).eq('id',id);
+  if(error)return global('修改失敗：'+error.message,false);global('聚會已修改');loadMeetings();
+};
+
+async function loadEvents(){
+  const {data,error}=await db.from('annual_events').select('*').order('sort_order',{ascending:true});
+  if(error) throw error;
+  $('eventList').innerHTML=(data||[]).map(r=>`
+    <div class="item">
+      <div class="mini">排序 ${r.sort_order??0}｜${r.published?'公開':'隱藏'}</div>
+      <div class="item-row"><input id="ed_${r.id}" value="${esc(r.event_date)}"><input id="et_${r.id}" value="${esc(r.title)}"></div>
+      <div class="item-actions"><button class="light" onclick="saveEvent('${r.id}')">儲存修改</button><button class="danger" onclick="deleteRow('annual_events','${r.id}',loadEvents)">刪除</button></div>
+    </div>`).join('')||'<p class="hint">目前沒有資料。</p>';
+}
+$('addEvent').onclick=async()=>{
+  const payload={event_date:val('e_date'),title:val('e_title'),sort_order:num('e_sort'),published:$('e_published').checked};
+  const {error}=await db.from('annual_events').insert(payload);if(error)return global('新增失敗：'+error.message,false);
+  $('e_date').value='';$('e_title').value='';global('活動已新增');loadEvents();
+};
+window.saveEvent=async id=>{
+  const {error}=await db.from('annual_events').update({event_date:$('ed_'+id).value.trim(),title:$('et_'+id).value.trim()}).eq('id',id);
+  if(error)return global('修改失敗：'+error.message,false);global('活動已修改');loadEvents();
+};
+
+async function loadAlbums(){
+  const {data,error}=await db.from('albums').select('*, album_photos(*)').order('sort_order',{ascending:true}).order('event_date',{ascending:false});
+  if(error) throw error;
+  $('albumList').innerHTML=(data||[]).map(a=>{
+    const photos=(a.album_photos||[]).sort((x,y)=>(x.sort_order||0)-(y.sort_order||0));
+    return `<div class="item">
+      <div class="mini">${esc(a.event_date||'')}｜排序 ${a.sort_order??0}｜${a.published?'公開':'隱藏'}</div>
+      <label>標題</label><input id="at_${a.id}" value="${esc(a.title)}">
+      <label>說明</label><textarea id="ax_${a.id}">${esc(a.description||'')}</textarea>
+      <label>封面 URL</label><input id="ac_${a.id}" value="${esc(a.cover_url||'')}">
+      <div class="item-actions">
+        <button class="light" onclick="saveAlbum('${a.id}')">儲存相簿</button>
+        <button class="danger" onclick="deleteAlbum('${a.id}')">刪除相簿</button>
+      </div>
+      <div class="divider"></div>
+      <strong>相簿照片</strong>
+      <div id="photos_${a.id}">
+        ${photos.map(p=>`<div class="photo-row">
+          <input id="pu_${p.id}" value="${esc(p.photo_url||'')}">
+          <input id="ps_${p.id}" type="number" value="${p.sort_order??0}">
+          <button class="danger" onclick="deleteRow('album_photos','${p.id}',loadAlbums)">刪除</button>
+        </div>`).join('')}
+      </div>
+      <div class="photo-row">
+        <input id="newp_${a.id}" placeholder="新增照片 URL">
+        <input id="newps_${a.id}" type="number" value="${photos.length}">
+        <button class="primary" onclick="addPhoto('${a.id}')">加照片</button>
+      </div>
+    </div>`;
+  }).join('')||'<p class="hint">目前沒有相簿。</p>';
+}
+$('addAlbum').onclick=async()=>{
+  const payload={event_date:val('a_date'),title:val('a_title'),description:val('a_desc'),cover_url:val('a_cover'),sort_order:num('a_sort'),published:$('a_published').checked};
+  const {error}=await db.from('albums').insert(payload);if(error)return global('新增相簿失敗：'+error.message,false);
+  ['a_date','a_title','a_desc','a_cover'].forEach(id=>$(id).value='');global('相簿已新增');loadAlbums();
+};
+window.saveAlbum=async id=>{
+  const {error}=await db.from('albums').update({title:$('at_'+id).value.trim(),description:$('ax_'+id).value.trim(),cover_url:$('ac_'+id).value.trim()}).eq('id',id);
+  if(error)return global('相簿修改失敗：'+error.message,false);global('相簿已修改');loadAlbums();
+};
+window.addPhoto=async albumId=>{
+  const url=$('newp_'+albumId).value.trim();if(!url)return global('請先填照片 URL',false);
+  const {error}=await db.from('album_photos').insert({album_id:albumId,photo_url:url,sort_order:Number($('newps_'+albumId).value||0)});
+  if(error)return global('新增照片失敗：'+error.message,false);global('照片已新增');loadAlbums();
+};
+window.deleteAlbum=async id=>{
+  if(!confirm('確定刪除這個相簿與它的照片嗎？'))return;
+  await db.from('album_photos').delete().eq('album_id',id);
+  const {error}=await db.from('albums').delete().eq('id',id);
+  if(error)return global('刪除失敗：'+error.message,false);global('相簿已刪除');loadAlbums();
+};
+window.deleteRow=async(table,id,reload)=>{
+  if(!confirm('確定刪除？'))return;
+  const {error}=await db.from(table).delete().eq('id',id);
+  if(error)return global('刪除失敗：'+error.message,false);global('已刪除');reload();
+};
+
+checkSession();
+</script>
+</body>
+</html>
