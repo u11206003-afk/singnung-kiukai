@@ -1,0 +1,109 @@
+/* ===== 新農教會｜手機版顯示修正 ===== */
+/* 只影響手機，不改電腦版 */
+
+@media (max-width: 768px) {
+
+  /* 防止整個網站左右爆版 */
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+  }
+
+  /* 原本桌機設定 min-width:1360px，手機必須解除 */
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* 所有圖片不得超出手機 */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* 文字正常換行，不跑出畫面 */
+  h1, h2, h3, h4,
+  p, span, a, li {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  /* 手機閱讀不要太擠 */
+  p,
+  li {
+    line-height: 1.8 !important;
+  }
+
+  /* 各大區塊增加上下呼吸空間 */
+  section {
+    padding-top: 55px !important;
+    padding-bottom: 55px !important;
+  }
+
+  /* 卡片與內容避免貼著手機邊緣 */
+  .card,
+  .about-card,
+  .social-card,
+  .meeting-card,
+  .album-card {
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* 手機上的 Grid 改成單欄，避免內容硬塞 */
+  .grid,
+  .cards,
+  .social-grid,
+  .meeting-grid,
+  .album-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* 按鈕區允許換行 */
+  .actions,
+  .buttons,
+  .hero-actions {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 14px !important;
+  }
+
+  /* 裝飾圖案不要壓住主要文字 */
+  .sticker,
+  .decoration,
+  .decor {
+    max-width: 32vw !important;
+  }
+}
+
+/* 更小的手機 */
+@media (max-width: 480px) {
+
+  .container {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  section {
+    padding-top: 45px !important;
+    padding-bottom: 45px !important;
+  }
+
+  h1 {
+    line-height: 1.2 !important;
+  }
+
+  h2 {
+    line-height: 1.3 !important;
+  }
+}
