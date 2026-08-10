@@ -235,3 +235,12 @@
     max-height: 58px !important;
   }
 }
+/* 手機版直接隱藏紫色十字架 */
+@media (max-width: 768px) {
+  .cross,
+  .cross-sticker,
+  .sticker.cross,
+  .decor.cross {
+    display: none !important;
+  }
+}
