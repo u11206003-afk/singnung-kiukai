@@ -263,3 +263,22 @@
     display: none !important;
   }
 }
+/* ===== 手機版：強制移除右下角紫色十字架裝飾 ===== */
+@media screen and (max-width: 768px) {
+
+  img[src*="cross"],
+  img[src*="sticker"],
+  img[alt*="cross"],
+  img[alt*="十字架"],
+  img[alt*="十字"],
+  .sticker,
+  .decoration,
+  .floating-decoration,
+  .floating-sticker {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+}
