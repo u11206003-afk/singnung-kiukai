@@ -244,3 +244,22 @@
     display: none !important;
   }
 }
+/* 手機版隱藏所有可能的十字架元素 */
+@media (max-width: 768px) {
+  .cross,
+  .cross-sticker,
+  .sticker.cross,
+  .decor.cross,
+  .cross-icon,
+  [class*="cross"],
+  [class*="Cross"],
+  [class*="十字"],
+  [id*="cross"],
+  [id*="Cross"],
+  [id*="十字"],
+  .floating-cross,
+  .float-cross,
+  .bottom-right-cross {
+    display: none !important;
+  }
+}
