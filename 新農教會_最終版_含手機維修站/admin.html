@@ -223,7 +223,7 @@ h1{font-size:2rem!important} h2{font-size:1.55rem!important} h3{font-size:1.3rem
 </div>
 
 <script>
-const SUPABASE_URL='https://ljyfnzfallrzubyyrylg.supabase.co';
+const SUPABASE_URL='https://ljyfnzfallrzubyyrylg.supabase.co';D
 const SUPABASE_KEY='sb_publishable_iVEzAp0g7kB3h8omFfi3FA_TvNYZyrr';
 const db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
@@ -251,7 +251,9 @@ async function checkSession(){
 }
 $('loginBtn').onclick=async()=>{
   $('loginBtn').disabled=true;
-  const {data,error}=await db.auth.signInWithPassword({email:val('loginEmail'),password:val('loginPassword')});
+ const username = val('loginEmail');
+const loginEmail = username === 'singnung-kiukai' ? 'celia0930923@gmail.com' : username;
+const {data,error}=await db.auth.signInWithPassword({email:loginEmail,password:val('loginPassword')});
   $('loginBtn').disabled=false;
   if(error) return status('loginStatus','登入失敗：'+error.message,false);
   status('loginStatus','登入成功');
