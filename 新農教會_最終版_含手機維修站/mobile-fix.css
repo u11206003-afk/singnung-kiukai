@@ -223,3 +223,15 @@
   }
 
 }
+/* 10. 手機版縮小右下角紫色十字架 */
+@media (max-width: 768px) {
+  .cross,
+  .cross-sticker,
+  .sticker.cross,
+  .decor.cross {
+    width: 58px !important;
+    height: 58px !important;
+    max-width: 58px !important;
+    max-height: 58px !important;
+  }
+}
