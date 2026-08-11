@@ -140,9 +140,9 @@
 
   /* Hero 左右布農圖騰變細 */
 .hero-bunun-band {
-  width: 14px !important;
-  min-width: 14px !important;
-  max-width: 14px !important;
+  width: 10px !important;
+  min-width: 10px !important;
+  max-width: 10px !important;
 }
 
 /* 如果圖騰是 Hero 的偽元素 */
