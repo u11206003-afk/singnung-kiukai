@@ -379,12 +379,12 @@
 
   /* About 照片 */
 
- #about .about-photo {
+#about .about-photo {
   width: 100% !important;
   max-width: 100% !important;
   min-height: 0 !important;
 
-  margin: 0 0 12px 0 !important;
+  margin: 0 0 22px 0 !important;
   padding: 0 !important;
 
   position: relative !important;
@@ -400,22 +400,21 @@
   }
 
 
-  #about .about-photo img {
+ #about .about-photo img {
   display: block !important;
 
   width: 100% !important;
   height: auto !important;
-
   max-height: none !important;
 
-  border-radius: 14px !important;
+  border-radius: 22px !important;
+
   object-fit: contain !important;
 
   margin: 0 !important;
 
-  box-shadow: 0 3px 10px rgba(60, 40, 25, 0.12) !important;
+  box-shadow: 0 8px 20px rgba(60, 40, 25, 0.18) !important;
 }
-
 
   /* About 文字紙張 */
 
