@@ -171,10 +171,18 @@
   overflow: visible !important;
 }
   .hero-photo img {
-    width: 100% !important;
-    height: auto !important;
-    display: block !important;
-  }
+  display: block !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  object-fit: contain !important;
+}
 
 
   /* Hero 照片旁十字架取消 */
