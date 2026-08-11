@@ -223,93 +223,17 @@
   }
 
 }
-/* 10. 手機版縮小右下角紫色十字架 */
-@media (max-width: 768px) {
-  .cross,
-  .cross-sticker,
-  .sticker.cross,
-  .decor.cross {
-    width: 58px !important;
-    height: 58px !important;
-    max-width: 58px !important;
-    max-height: 58px !important;
-  }
-}
-/* 手機版直接隱藏紫色十字架 */
-@media (max-width: 768px) {
-  .cross,
-  .cross-sticker,
-  .sticker.cross,
-  .decor.cross {
-    display: none !important;
-  }
-}
-/* 手機版隱藏所有可能的十字架元素 */
-@media (max-width: 768px) {
-  .cross,
-  .cross-sticker,
-  .sticker.cross,
-  .decor.cross,
-  .cross-icon,
-  [class*="cross"],
-  [class*="Cross"],
-  [class*="十字"],
-  [id*="cross"],
-  [id*="Cross"],
-  [id*="十字"],
-  .floating-cross,
-  .float-cross,
-  .bottom-right-cross {
-    display: none !important;
-  }
-}
-/* ===== 手機版：強制移除右下角紫色十字架裝飾 ===== */
-@media screen and (max-width: 768px) {
-
-  img[src*="cross"],
-  img[src*="sticker"],
-  img[alt*="cross"],
-  img[alt*="十字架"],
-  img[alt*="十字"],
-  .sticker,
-  .decoration,
-  .floating-decoration,
-  .floating-sticker {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-
-}
-
-/* 手機版隱藏 Hero 照片旁的十字架 */
+/* ===== 手機版最終裝飾修正 ===== */
 @media (max-width: 900px) {
-  .hero-photo::after {
-    display: none !important;
-  }
-}
-/* ===== 手機版：Hero 左右圖騰縮細 ===== */
-@media (max-width: 900px) {
+
+  /* Hero 左右布農圖騰縮細 */
   .hero-bunun-band {
     width: 16px !important;
   }
-}
 
-
-/* ===== 手機版：移除右下角大型紫色十字架 ===== */
-@media (max-width: 900px) {
-
-  [class*="floating-cross"],
-  [class*="float-cross"],
-  [class*="bottom-right-cross"],
-  .floating-cross,
-  .float-cross,
-  .bottom-right-cross {
+  /* Hero 照片旁的十字架隱藏 */
+  .hero-photo::after {
     display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
   }
 
 }
