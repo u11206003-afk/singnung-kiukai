@@ -627,15 +627,16 @@
 
 }
 /* 手機版｜文青宋體標題 */
+/* 手機版｜字體跟電腦版完全相同 */
 @media (max-width: 900px) {
 
+  body,
   h1,
   h2,
   h3,
   h4,
   .section-title {
-    font-family: "Noto Serif TC", serif !important;
-    font-weight: 900 !important;
+    font-family: "Noto Serif TC", "Source Han Serif TC", "PMingLiU", "Microsoft JhengHei", serif !important;
   }
 
 }
