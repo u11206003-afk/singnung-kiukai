@@ -252,7 +252,7 @@ async function checkSession(){
 $('loginBtn').onclick=async()=>{
   $('loginBtn').disabled=true;
  const username = val('loginEmail');
-const loginEmail = username === 'singnung-kiukai' ? 'u11206003@go.utaipei.edu.tw' : username;
+const loginEmail = username.toLowerCase() === 'sinnung' ? 'u11206003@go.utaipei.edu.tw' : username;
 const {data,error}=await db.auth.signInWithPassword({email:loginEmail,password:val('loginPassword')});
   $('loginBtn').disabled=false;
   if(error) return status('loginStatus','登入失敗：'+error.message,false);
