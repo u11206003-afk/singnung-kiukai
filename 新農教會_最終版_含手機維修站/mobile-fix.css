@@ -289,3 +289,9 @@
     content: none !important;
   }
 }
+/* 手機版隱藏 Hero 照片旁的十字架 */
+@media (max-width: 900px) {
+  .hero-photo::after {
+    display: none !important;
+  }
+}
