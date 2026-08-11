@@ -401,13 +401,19 @@
 
 
   #about .about-photo img {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    border-radius: 14px !important;
-    object-fit: cover !important;
-    margin: 0 !important;
-    box-shadow: 0 3px 10px rgba(60, 40, 25, 0.12) !important;
+  display: block !important;
+
+  width: 100% !important;
+  height: auto !important;
+
+  max-height: none !important;
+
+  border-radius: 14px !important;
+  object-fit: contain !important;
+
+  margin: 0 !important;
+
+  box-shadow: 0 3px 10px rgba(60, 40, 25, 0.12) !important;
 }
 
 
