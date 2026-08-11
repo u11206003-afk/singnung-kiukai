@@ -419,18 +419,15 @@
 
   /* About 文字紙張 */
 
-  #about .about-copy {
-    width: 100% !important;
+#about .about-copy {
+  width: 100% !important;
+  min-height: 0 !important;
 
-    min-height: 0 !important;
+  margin: 0 !important;
+  padding: 24px 20px 28px !important;
 
-    padding:
-      24px
-      20px
-      28px !important;
-
-    overflow: visible !important;
-  }
+  overflow: visible !important;
+}
 
 
   /* 移除右下角紫色十字架 */
