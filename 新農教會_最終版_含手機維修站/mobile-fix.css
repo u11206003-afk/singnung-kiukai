@@ -353,9 +353,8 @@
      ================================================= */
 
   .card,
-  .social-card,
-  .meeting-card,
-  .album-card {
+.meeting-card,
+.album-card {
     width: 100% !important;
     max-width: 100% !important;
 
