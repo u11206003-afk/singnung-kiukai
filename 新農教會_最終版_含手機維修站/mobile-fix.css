@@ -512,9 +512,10 @@
   }
 
 
-  #about .about-photo {
-    width: 52% !important;
-  }
+ #about .about-photo {
+  width: 100% !important;
+  max-width: 100% !important;
+}
 
 
   #about .about-copy {
