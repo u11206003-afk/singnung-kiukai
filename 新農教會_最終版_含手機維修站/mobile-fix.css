@@ -296,3 +296,286 @@
     font-size: 13px !important;
   }
 }
+/* ==================================================
+   新農教會｜手機版版面最終調整
+   依照目前確認的示意圖
+   只影響手機版，不修改電腦版
+   ================================================== */
+
+@media (max-width: 900px) {
+
+  /* ========================================
+     1. Hero 左右布農圖騰再變細
+     ======================================== */
+
+  .hero-bunun-band {
+    width: 8px !important;
+  }
+
+
+  /* ========================================
+     2. Hero 整體縮短、變精緻
+     不再佔手機一大段高度
+     ======================================== */
+
+  .hero {
+    padding-top: 24px !important;
+    padding-bottom: 28px !important;
+  }
+
+  .hero-grid {
+    gap: 22px !important;
+  }
+
+  .hero-photo {
+    margin-top: 8px !important;
+    padding: 8px 8px 30px !important;
+  }
+
+  .hero-photo img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+
+  /* ========================================
+     3. Hero 後面不要再增加圖騰
+     原本 hero-bunun-band 若位於 Hero 結尾，
+     手機版直接隱藏橫向區隔
+     ======================================== */
+
+  .hero + .hero-bunun-band,
+  section.hero + .hero-bunun-band {
+    display: none !important;
+  }
+
+
+  /* ========================================
+     4. Hero → 四個快速入口
+     縮小中間過大的空白
+     ======================================== */
+
+  .quick-section {
+    padding-top: 30px !important;
+    padding-bottom: 38px !important;
+  }
+
+
+  /* ========================================
+     5. 今日新眼光～恩典足跡
+     保持 2 × 2
+     ======================================== */
+
+  .quick-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  .quick-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+
+    padding: 18px 14px !important;
+
+    box-sizing: border-box !important;
+  }
+
+  .quick-icon {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 16px !important;
+  }
+
+  .quick-card h3 {
+    font-size: 18px !important;
+    line-height: 1.35 !important;
+    margin-top: 12px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .quick-card p {
+    font-size: 14px !important;
+    line-height: 1.65 !important;
+  }
+
+  .quick-card .more {
+    font-size: 13px !important;
+    margin-top: 12px !important;
+  }
+
+
+  /* ========================================
+     6. 關於新農教會
+     改成「照片直接放進文字框」
+     ======================================== */
+
+  #about {
+    padding-top: 30px !important;
+    padding-bottom: 45px !important;
+  }
+
+  #about .about-grid {
+    display: block !important;
+  }
+
+
+  /* ========================================
+     7. 原本獨立的大照片區取消外框效果
+     讓照片視覺上成為 about 卡片的一部分
+     ======================================== */
+
+  #about .about-photo {
+    width: 42% !important;
+    min-height: 0 !important;
+
+    float: left !important;
+
+    margin:
+      105px
+      18px
+      14px
+      18px !important;
+
+    padding: 0 !important;
+
+    background: transparent !important;
+    box-shadow: none !important;
+
+    transform: none !important;
+
+    position: relative !important;
+    z-index: 3 !important;
+  }
+
+  #about .about-photo::before,
+  #about .about-photo::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  #about .about-photo img {
+    width: 100% !important;
+    height: auto !important;
+
+    display: block !important;
+
+    border-radius: 12px !important;
+
+    object-fit: cover !important;
+
+    box-shadow:
+      0 2px 8px rgba(60, 40, 25, 0.14) !important;
+  }
+
+
+  /* ========================================
+     8. About 文字框
+     讓照片＋文字看起來在同一張紙上
+     ======================================== */
+
+  #about .about-copy {
+    width: 100% !important;
+
+    box-sizing: border-box !important;
+
+    padding:
+      24px
+      20px
+      28px !important;
+
+    min-height: 0 !important;
+
+    overflow: hidden !important;
+  }
+
+
+  /* 標題保持在照片上方 */
+  #about .about-copy h2 {
+    font-size: 27px !important;
+    line-height: 1.3 !important;
+
+    margin-bottom: 8px !important;
+  }
+
+
+  /* 關於新農教會正文 */
+  #about .about-copy p {
+    font-size: 15px !important;
+    line-height: 1.85 !important;
+  }
+
+
+  /* 清除 float，避免後面的區塊被照片影響 */
+  #about .about-copy::after {
+    content: "" !important;
+    display: block !important;
+    clear: both !important;
+
+    position: static !important;
+    width: 0 !important;
+    height: 0 !important;
+
+    background: none !important;
+    border: 0 !important;
+  }
+
+}
+
+
+/* ========================================
+   小螢幕再微調
+   ======================================== */
+
+@media (max-width: 480px) {
+
+  .hero-bunun-band {
+    width: 7px !important;
+  }
+
+  .quick-grid {
+    gap: 10px !important;
+  }
+
+  .quick-card {
+    padding: 16px 12px !important;
+  }
+
+  .quick-card h3 {
+    font-size: 17px !important;
+  }
+
+  .quick-card p {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+  }
+
+  #about .about-photo {
+    width: 40% !important;
+
+    margin:
+      100px
+      14px
+      10px
+      14px !important;
+  }
+
+  #about .about-copy {
+    padding:
+      22px
+      16px
+      26px !important;
+  }
+
+  #about .about-copy h2 {
+    font-size: 25px !important;
+  }
+
+  #about .about-copy p {
+    font-size: 14px !important;
+    line-height: 1.85 !important;
+  }
+
+}
