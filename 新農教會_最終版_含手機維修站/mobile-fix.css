@@ -379,21 +379,20 @@
 
   /* About 照片 */
 
-  #about .about-photo {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-height: 0 !important;
+ #about .about-photo {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 0 !important;
 
-    margin: 0 !important;
-    padding: 0 20px !important;
+  margin: 0 0 18px 0 !important;
+  padding: 0 !important;
 
-    position: relative !important;
+  position: relative !important;
 
-    background: transparent !important;
-    box-shadow: none !important;
-    transform: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
 }
-
   #about .about-photo::before,
   #about .about-photo::after {
     display: none !important;
