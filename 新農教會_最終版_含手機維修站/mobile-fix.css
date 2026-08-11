@@ -282,3 +282,10 @@
   }
 
 }
+/* 手機版：移除 Hero 區域多餘的紫色十字架 */
+@media (max-width: 900px) {
+  .hero::after {
+    display: none !important;
+    content: none !important;
+  }
+}
