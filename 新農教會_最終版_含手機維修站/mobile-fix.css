@@ -626,3 +626,16 @@
   }
 
 }
+/* 手機版｜所有標題改黑體、加粗 */
+@media (max-width: 900px) {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .section-title {
+    font-family: "PingFang TC", "Microsoft JhengHei", Arial, sans-serif !important;
+    font-weight: 900 !important;
+  }
+
+}
