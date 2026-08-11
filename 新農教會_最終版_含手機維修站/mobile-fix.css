@@ -237,3 +237,10 @@
   }
 
 }
+/* 手機版：移除「關於新農教會」右下角大型紫色十字架 */
+@media (max-width: 900px) {
+  .about-copy::after {
+    display: none !important;
+    content: none !important;
+  }
+}
