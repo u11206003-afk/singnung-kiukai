@@ -289,3 +289,27 @@
     display: none !important;
   }
 }
+/* ===== 手機版：Hero 左右圖騰縮細 ===== */
+@media (max-width: 900px) {
+  .hero-bunun-band {
+    width: 16px !important;
+  }
+}
+
+
+/* ===== 手機版：移除右下角大型紫色十字架 ===== */
+@media (max-width: 900px) {
+
+  [class*="floating-cross"],
+  [class*="float-cross"],
+  [class*="bottom-right-cross"],
+  .floating-cross,
+  .float-cross,
+  .bottom-right-cross {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+}
