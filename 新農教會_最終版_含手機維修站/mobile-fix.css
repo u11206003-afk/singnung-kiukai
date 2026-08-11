@@ -302,11 +302,38 @@
      ================================================= */
 
   .gather-grid,
-  .album-grid,
-  .social-grid,
-  .about-grid {
-    grid-template-columns: 1fr !important;
-  }
+.album-grid,
+.about-grid {
+  grid-template-columns: 1fr !important;
+}
+
+/* 青年團契 Instagram + 教會 YouTube：手機兩格並排 */
+.social-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+}
+
+.social-card {
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 18px 14px !important;
+}
+
+.social-card h3 {
+  font-size: 17px !important;
+  line-height: 1.35 !important;
+}
+
+.social-card p {
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+
+.social-icon {
+  font-size: 27px !important;
+}
 
 
   /* =================================================
