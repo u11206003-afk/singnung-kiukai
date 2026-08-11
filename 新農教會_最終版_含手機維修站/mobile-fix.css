@@ -579,47 +579,125 @@
   }
 
 }
-/* ===== 手機版滑動卡頓修正 ===== */
+/* ==================================================
+   iPhone Safari 滑動效能修正｜診斷版
+   只影響手機
+   ================================================== */
+
 @media (max-width: 900px) {
 
-  /* 手機版關閉容易造成 Safari 卡頓的浮動效果 */
-  #about .about-photo {
-    float: none !important;
-    width: 42% !important;
-    margin: 18px auto !important;
-    display: block !important;
-  }
-
-  /* About 卡片改回正常文件流 */
-  #about .about-grid,
-  #about .about-copy {
-    overflow: visible !important;
-  }
-
-  /* 手機版停用較重的動畫與 transform */
-  .hero-photo,
-  .about-photo,
-  .quick-card,
-  .card,
-  .reveal,
-  .stagger > * {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-  }
-
-  /* 保證頁面可正常垂直滑動 */
-  html,
-  body {
-    overflow-y: auto !important;
+  /* 1. 頁面維持正常文件流 */
+  html {
     height: auto !important;
-    min-height: 100% !important;
-    touch-action: pan-y !important;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+  }
+
+  body {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    position: static !important;
   }
 
   main {
+    height: auto !important;
+    min-height: 0 !important;
     overflow: visible !important;
+    position: relative !important;
+  }
+
+
+  /* 2. 手機版全部停止動畫 */
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    animation-name: none !important;
+    transition: none !important;
+  }
+
+
+  /* 3. 關閉 Safari 容易卡頓的視覺效果 */
+  .hero-photo,
+  .quick-card,
+  .card,
+  .about-photo,
+  .about-copy,
+  .album-card,
+  .meeting-card,
+  .social-card {
+    transform: none !important;
+    filter: none !important;
+  }
+
+
+  /* 4. 手機版先關閉 clip-path
+     這個在 iPhone Safari 滾動時很容易一直重新繪製 */
+  .hero-photo,
+  .quick-card,
+  .card,
+  .about-photo,
+  .about-copy,
+  .album-card {
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+  }
+
+
+  /* 5. Reveal 不再等 JS 動畫 */
+  .reveal,
+  .reveal.show,
+  [class*="reveal"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+
+  /* 6. stagger 同樣直接顯示 */
+  .stagger > *,
+  .stagger.show > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+
+  /* 7. About 照片暫時不用 float */
+  #about .about-photo {
+    float: none !important;
+    width: 42% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 18px auto !important;
+    position: static !important;
+    display: block !important;
+  }
+
+
+  #about .about-grid,
+  #about .about-copy {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+
+  /* 8. 圖片正常顯示 */
+  img {
+    max-width: 100% !important;
     height: auto !important;
   }
+
+
+  /* 9. 防止固定背景造成 Safari 捲動卡頓 */
+  body,
+  main,
+  section,
+  .hero,
+  .quick-section,
+  #about {
+    background-attachment: scroll !important;
+  }
+
 }
