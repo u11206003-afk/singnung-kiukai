@@ -398,14 +398,13 @@
 
   #about .about-photo img {
     display: block !important;
-
     width: 100% !important;
     height: auto !important;
-
-    border-radius: 12px !important;
-
+    border-radius: 14px !important;
     object-fit: cover !important;
-  }
+    margin: 0 !important;
+    box-shadow: 0 3px 10px rgba(60, 40, 25, 0.12) !important;
+}
 
 
   /* About 文字紙張 */
