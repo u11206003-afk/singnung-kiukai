@@ -579,3 +579,47 @@
   }
 
 }
+/* ===== 手機版滑動卡頓修正 ===== */
+@media (max-width: 900px) {
+
+  /* 手機版關閉容易造成 Safari 卡頓的浮動效果 */
+  #about .about-photo {
+    float: none !important;
+    width: 42% !important;
+    margin: 18px auto !important;
+    display: block !important;
+  }
+
+  /* About 卡片改回正常文件流 */
+  #about .about-grid,
+  #about .about-copy {
+    overflow: visible !important;
+  }
+
+  /* 手機版停用較重的動畫與 transform */
+  .hero-photo,
+  .about-photo,
+  .quick-card,
+  .card,
+  .reveal,
+  .stagger > * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  /* 保證頁面可正常垂直滑動 */
+  html,
+  body {
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: 100% !important;
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  main {
+    overflow: visible !important;
+    height: auto !important;
+  }
+}
